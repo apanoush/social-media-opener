@@ -7,13 +7,13 @@ import scala.io.StdIn.readLine
 class ReseauxSociaux(url: String, choice: Int) {
     
     def make_instagram: String = {
-        return "https://instagram.com/".+(this.url)
+        "https://instagram.com/".+(this.url)
     }
     def make_twitter: String = {
-        return "https://twitter.com/".+(this.url)
+        "https://twitter.com/".+(this.url)
     }
     def make_linktree: String = {
-        return "https://linktr.ee/".+(this.url)
+        "https://linktr.ee/".+(this.url)
     }
     
     def makeURL: String = {
