@@ -20,6 +20,8 @@ class ResauxSociaux(url: String) {
 object test2 {
     def main(args: Array[String]) {
         
+        val instance: ResauxSociaux = new ResauxSociaux(args(0))
+        
         val desk: Desktop = Desktop.getDesktop()
 
         def input: Int = {
