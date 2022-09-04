@@ -4,47 +4,52 @@ import java.io;
 import java.net.URI;
 import scala.io.StdIn.readLine
 
-class ResauxSociaux(url: String) {
+class ReseauxSociaux(url: String, choice: Int) {
     
     def make_instagram: String = {
-        return "https://instagram.com/".+(url)
+        return "https://instagram.com/".+(this.url)
     }
     def make_twitter: String = {
-        return "https://twitter.com/".+(url)
+        return "https://twitter.com/".+(this.url)
     }
     def make_linktree: String = {
-        return "https://linktr.ee/".+(url)
+        return "https://linktr.ee/".+(this.url)
+    }
+    
+    def makeURL: String = {
+        this.choice match {
+        case 1 => this.make_instagram
+        case 2 => this.make_twitter
+        case 3 => this.make_linktree
+        case _ => "erreur"}
     }
 }
 
-object test2 {
+object main {
     def main(args: Array[String]) {
-        
-        val instance: ResauxSociaux = new ResauxSociaux(args(0))
         
         val desk: Desktop = Desktop.getDesktop()
 
-        def input: Int = {
+        def input1: String = {
+            println("votre @: ")
+            readLine
+        }
+
+        def input2: Int = {
             println("1. instagram" ) ; println("2. twitter") ; println("3. linktree") ; println("veuillez choisir (1 à 3): ")
             readLine.toInt
         }
-        
-        def makeChoice: Int = {
+
+        def makeInstance: ReseauxSociaux = {
             args.length match {
-                case 1 => input
-                case 2 => args(1).toInt
+                case 0 => new ReseauxSociaux(input1, input2)
+                case 1 => new ReseauxSociaux(args(0), input2)
+                case 2 => new ReseauxSociaux(args(0), args(1).toInt)
             }
         }
-        val choice: Int = makeChoice
-        
-        def makeURL(choice: Int): String = {
-            choice match {
-            case 1 => instance.make_instagram
-            case 2 => instance.make_twitter
-            case 3 => instance.make_linktree
-            case _ => "erreur"}
-        }
 
-        desk.browse(new URI(makeURL(choice)));
+        val instance: ReseauxSociaux = makeInstance
+
+        desk.browse(new URI(instance.makeURL));
     }
 }
