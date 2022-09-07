@@ -27,7 +27,7 @@ object main {
         val desk: Desktop = Desktop.getDesktop()
 
         def input1: String = {
-            println("votre @: ")
+            println("votre @: ") // pas très functional mais le choix
             readLine
         }
 
